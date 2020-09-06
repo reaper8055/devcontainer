@@ -1,0 +1,16 @@
+{
+    "name": "Go ENV",
+    "dockerComposeFile":"docker-compose.yml",
+    "service": "go_web",
+    "runServices": ["psql_db", "go_web"],
+    "workspaceFolder": "/home/vscode/go/src/lenslocked.com",
+	"shutdownAction": "stopCompose",
+	"extensions": [
+		"golang.go",
+		"766b.go-outliner",
+		"msyrus.go-doc",
+		"neverik.go-critic",
+		"quillaja.goasm",
+		"ms-ossdata.vscode-postgresql"
+	]
+}

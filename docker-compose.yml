@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+    psql_db:
+        container_name: psql-db
+        image: postgres:latest
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: psql-user
+            POSTGRES_PASSWORD: psql-pw
+            POSTGRES_DB: psql-db
+        volumes:
+            - ../pgdata:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+    go_web:
+        container_name: go-web
+        user: vscode
+        build:
+            context: .
+            dockerfile: Dockerfile
+        depends_on:
+            - psql_db
+        ports:
+            - "3000:3000"
+        volumes:
+            - ../:/home/vscode/go/src/lenslocked.com:cached
+        command: /bin/sh -c "while sleep 1000; do :; done"
